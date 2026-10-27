@@ -1,0 +1,79 @@
+@host = http://localhost:5000
+@token = paste-jwt-token-here
+
+### Register a new customer
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "email": "jane@test.com",
+  "password": "Jane@123",
+  "phone": "7777777777"
+}
+
+### Login as the seeded admin
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@shop.com",
+  "password": "Admin@123"
+}
+
+### Login as the seeded customer
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@test.com",
+  "password": "John@123"
+}
+
+### List products (search + filter + pagination)
+GET {{host}}/api/products?page=1&pageSize=12&sortBy=newest
+Accept: application/json
+
+### Product details
+GET {{host}}/api/products/1
+Accept: application/json
+
+### Categories
+GET {{host}}/api/products/categories
+Accept: application/json
+
+### Product reviews
+GET {{host}}/api/products/1/reviews
+Accept: application/json
+
+### My cart (requires token)
+GET {{host}}/api/cart
+Authorization: Bearer {{token}}
+
+### Add to cart (requires token)
+POST {{host}}/api/cart
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "productId": 1,
+  "quantity": 2
+}
+
+### Place an order (requires token)
+POST {{host}}/api/orders/place
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "shippingAddress": "221B Baker Street, Pune 411001",
+  "paymentMethod": "COD"
+}
+
+### My orders (requires token)
+GET {{host}}/api/orders
+Authorization: Bearer {{token}}
+
+### Admin dashboard (requires Admin token)
+GET {{host}}/api/admin/dashboard
+Authorization: Bearer {{token}}

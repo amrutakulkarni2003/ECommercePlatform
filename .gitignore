@@ -1,0 +1,31 @@
+# .NET build output
+bin/
+obj/
+*.user
+*.suo
+.vs/
+
+# SQLite database (created automatically on first run)
+*.db
+*.db-shm
+*.db-wal
+
+# Logs
+*.log
+server*.log
+
+# Frontend
+node_modules/
+dist/
+dist-ssr/
+.vite/
+*.local
+.env
+.env.local
+.env.*.local
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
